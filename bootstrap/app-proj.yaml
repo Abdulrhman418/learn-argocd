@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev
+spec:
+  description: this is for dev env
+  sourceRepos:
+    - https://github.com/lm-academy/argocd-example-apps-labs.git
+    
+  destinations:
+    - namespace: dev
+      server: https://172.30.1.2:6443
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: prod
+spec:
+  description: this is for production env 
+  sourceRepos:
+    - https://github.com/lm-academy/argocd-example-apps-labs.git
+
+  destinations:
+    - namespace: prod
+      server: https://172.30.1.2:6443
