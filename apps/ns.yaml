@@ -9,6 +9,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dev
+  name: prod
   annotations:
     argocd.argoproj.io/sync-wave: "1"
