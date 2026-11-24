@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: abdulrhmanmokhtar/catalog-app-frontend:latest
+          image: abdulrhmanmokhtar/catalog-app-frontend:v2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
