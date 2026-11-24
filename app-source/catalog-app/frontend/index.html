@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Catalog</title>
+    <style>
+      body { font: 16px system-ui, sans-serif; margin: 3rem auto; max-width: 48rem; padding: 0 1rem; }
+      form { display: grid; gap: .6rem; grid-template-columns: 2fr 1fr; }
+      input, button { padding: .65rem; }
+      #description { grid-column: 1 / -1; }
+      #status { min-height: 1.5em; }
+      li { align-items: center; display: flex; gap: 1rem; justify-content: space-between; padding: .6rem 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Product Catalog</h1>
+      <p>Add products to your catalog. Products are saved in PostgreSQL.</p>
+      <form id="product-form">
+        <input id="name" maxlength="120" placeholder="Product name" required>
+        <input id="price" type="number" min="0" step="0.01" placeholder="Price" required>
+        <input id="description" maxlength="500" placeholder="Description">
+        <button type="submit">Add product</button>
+      </form>
+      <p id="status" role="status"></p>
+      <ul id="products"></ul>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

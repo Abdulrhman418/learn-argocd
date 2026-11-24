@@ -1,0 +1,52 @@
+# create a project for notes apps
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: notes
+  namespace: argocd
+spec:
+  description: this is for notes apps
+  sourceRepos:
+    - https://github.com/Abdulrhman418/learn-argocd.git
+  destinations:
+    - namespace: notes-*
+      server: https://kubernetes.default.svc
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: notes
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - tier: backend
+          - tier: frontend
+          - tier: database
+            
+  template:
+    metadata:
+      name: '{{tier}}-notes'
+    spec:
+      project: notes
+      source:
+        repoURL: https://github.com/Abdulrhman418/learn-argocd.git
+        targetRevision: HEAD
+        path: deploy/notes-app
+        directory:
+          include: '{{tier}}.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: notes-dev
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+

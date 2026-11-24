@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notes</title>
+    <style>
+      body { font: 16px system-ui, sans-serif; margin: 3rem auto; max-width: 42rem; padding: 0 1rem; }
+      form { display: flex; gap: .5rem; }
+      input { flex: 1; padding: .65rem; }
+      button { cursor: pointer; padding: .6rem .9rem; }
+      li { align-items: center; display: flex; gap: 1rem; justify-content: space-between; padding: .6rem 0; }
+      #status { min-height: 1.5em; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>My Notes</h1>
+      <p>Add a note. Notes are saved in PostgreSQL.</p>
+      <form id="note-form">
+        <input id="note-content" maxlength="500" placeholder="Write a note..." required>
+        <button type="submit">Add note</button>
+      </form>
+      <p id="status" role="status"></p>
+      <ul id="notes"></ul>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

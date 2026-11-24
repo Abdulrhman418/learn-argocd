@@ -1,0 +1,53 @@
+# create a project for catalog apps
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: catalog
+  namespace: argocd
+spec:
+  description: this is for catalog apps
+  sourceRepos:
+    - https://github.com/Abdulrhman418/learn-argocd.git
+  destinations:
+    - namespace: catalog-*
+      server: https://kubernetes.default.svc
+
+---
+
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/applicationset_v1alpha1.json
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: catalog
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - tier: backend
+          - tier: frontend
+          - tier: database
+            
+  template:
+    metadata:
+      name: '{{tier}}-catalog'
+    spec:
+      project: catalog
+      source:
+        repoURL: https://github.com/Abdulrhman418/learn-argocd.git
+        targetRevision: HEAD
+        path: deploy/catalog-app
+        directory:
+          include: '{{tier}}.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: catalog-dev
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+
