@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: notes-app-backend:latest
+          image: abdulrhmanmokhtar/notes-app-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

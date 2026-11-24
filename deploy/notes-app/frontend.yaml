@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: notes-app-frontend:latest
+          image: abdulrhmanmokhtar/notes-app-frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

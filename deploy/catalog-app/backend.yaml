@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: catalog-app-backend:latest
+          image: abdulrhmanmokhtar/catalog-app-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
