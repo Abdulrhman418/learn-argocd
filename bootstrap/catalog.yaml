@@ -12,6 +12,9 @@ spec:
   destinations:
     - namespace: catalog-*
       server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
 
 ---
 
