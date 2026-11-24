@@ -3,14 +3,9 @@
 The app source and Dockerfiles are in this folder. Kubernetes manifests are
 separate, in `deploy/catalog-app`, which is the Argo CD source path.
 
-Create a Secret in namespace `catalog-dev` before syncing:
-
-```powershell
-kubectl create secret generic catalog-app-db -n catalog-dev `
-  --from-literal=DB_NAME='catalog' `
-  --from-literal=DB_USER='catalog_user' `
-  --from-literal=DB_PASSWORD='<choose-a-password>'
-```
+Argo CD creates the `catalog-app-db` Secret from `deploy/catalog-app/database-secret.yaml`
+in the database Application, before the PostgreSQL Deployment. The checked-in
+password is for learning only; replace it before using this outside a local demo.
 
 Build from the repository root and load the images into your cluster:
 

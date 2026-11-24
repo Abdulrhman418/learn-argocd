@@ -38,7 +38,7 @@ spec:
         targetRevision: HEAD
         path: deploy/notes-app
         directory:
-          include: '{{tier}}.yaml'
+          include: '{{tier}}*.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: notes-dev

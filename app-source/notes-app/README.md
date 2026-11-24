@@ -3,14 +3,9 @@
 The app source and Dockerfiles are in this folder. Kubernetes manifests are
 separate, in `deploy/notes-app`, which is the Argo CD source path.
 
-Create a Secret in namespace `notes-dev` before syncing:
-
-```powershell
-kubectl create secret generic notes-app-db -n notes-dev `
-  --from-literal=DB_NAME='notes' `
-  --from-literal=DB_USER='notes_user' `
-  --from-literal=DB_PASSWORD='<choose-a-password>'
-```
+Argo CD creates the `notes-app-db` Secret from `deploy/notes-app/database-secret.yaml`
+in the database Application, before the PostgreSQL Deployment. The checked-in
+password is for learning only; replace it before using this outside a local demo.
 
 Build from the repository root and load the images into your cluster:
 
